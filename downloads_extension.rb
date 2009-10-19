@@ -29,7 +29,7 @@ class DownloadsExtension < Radiant::Extension
       admin.download = Radiant::AdminUI.load_default_download_regions
     end
 
-    admin.tabs['Readers'].add_link('downloads', '/admin/readers/downloads')
+    admin.tabs.add "Downloads", "/admin/readers/downloads", :after => "Clients", :visibility => [:all]
   end
   
   def deactivate

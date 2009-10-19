@@ -16,11 +16,9 @@ class DownloadsExtension < Radiant::Extension
   extension_config do |config|
     config.gem 'paperclip'
     config.extension 'reader'
-    config.extension 'reader_group'
   end
   
   def activate
-    Group.send :include, DownloadGroup
     Page.send :include, DownloadTags
     UserActionObserver.instance.send :add_observer!, Download 
 

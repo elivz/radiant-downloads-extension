@@ -3,8 +3,8 @@
 
 class DownloadsExtension < Radiant::Extension
   version "0.5"
-  description "Controlled file access using nginx's local redirects. Requires reader and reader_group extensions."
-  url "http://www.spanner.org/radiant/downloads"
+  description "Controlled file access by client."
+  url "http://elivz.com"
   
   define_routes do |map|
     map.resources :downloads, :only => :show

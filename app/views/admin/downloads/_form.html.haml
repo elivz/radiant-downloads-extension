@@ -27,7 +27,7 @@
           = f.label :readers, "Available to"
           - Reader.find(:all).each do |reader|
             %span.radiobutton
-              = radio_button_tag "download[reader_ids][]", reader.id, @download.has_reader?(reader)
+              = radio_button_tag "download[reader_id]", reader.id, @download.has_reader?(reader)
               = reader.name
 
   = javascript_tag "$('download_name').activate()"

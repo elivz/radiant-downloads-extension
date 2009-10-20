@@ -8,7 +8,7 @@ class DownloadsExtension < Radiant::Extension
   
   define_routes do |map|
     map.resources :downloads, :only => :show
-    map.namespace :admin, :path_prefix => 'admin' do |admin|
+    map.namespace :admin, :path_prefix => 'admin/readers' do |admin|
       admin.resources :downloads
     end
   end
@@ -27,7 +27,7 @@ class DownloadsExtension < Radiant::Extension
       admin.download = Radiant::AdminUI.load_default_download_regions
     end
 
-    admin.tabs.add "Downloads", "/admin/downloads", :after => "Clients", :visibility => [:all]
+    admin.tabs['Clients'].add_link('downloads', '/admin/readers/downloads')
   end
   
   def deactivate

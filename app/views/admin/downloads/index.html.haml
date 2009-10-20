@@ -1,6 +1,6 @@
 - include_stylesheet 'admin/downloads'
 
-%h1 Authorised Downloads
+%h1 Authorized Downloads
 
 %table#downloads.index{:cellpadding => "0", :cellspacing => "0", :border => "0"}
   %thead
@@ -23,7 +23,7 @@
             = link_to dl.document_file_name, download_url(dl)
             = number_to_human_size(dl.document_file_size)
           %td.readers
-            = dl.readers.map {|g| link_to g.name, admin_reader_url(g) }.join(', ')
+            = link_to dl.reader.name, admin_reader_url(dl.reader)
           %td.remove
             =  link_to( image('remove', :alt => 'Remove Download'), :action => 'destroy', :id => dl, :confirm => "are you sure you want to completely remove #{dl.name}?")
 

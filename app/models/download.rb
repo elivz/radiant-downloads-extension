@@ -3,6 +3,8 @@ class Download < ActiveRecord::Base
   belongs_to :created_by, :class_name => 'User'
   belongs_to :updated_by, :class_name => 'User'
   belongs_to :reader
+  belongs_to :download_folder
+  
   default_scope :order => 'updated_at DESC, created_at DESC'
 
   has_attached_file :document,

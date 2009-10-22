@@ -13,7 +13,7 @@
     - if @downloads.empty?
       %tr
         %td.note{:colspan => "4"} 
-          No downloads for you, sonny
+          No files have been uploaded yet.
     - else
       - @downloads.each do |dl|
         %tr{:class => "node level-1"}
@@ -25,7 +25,7 @@
           %td.readers
             = link_to dl.reader.name, admin_reader_url(dl.reader)
           %td.remove
-            =  link_to( image('remove', :alt => 'Remove Download'), :action => 'destroy', :id => dl, :confirm => "are you sure you want to completely remove #{dl.name}?")
+            = link_to( image('remove', :alt => 'Remove Download'), :action => 'destroy', :id => dl, :confirm => "Are you sure you want to completely remove #{dl.name}?")
 
 
 %p

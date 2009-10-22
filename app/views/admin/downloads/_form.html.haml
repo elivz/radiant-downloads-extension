@@ -25,10 +25,7 @@
       - form.edit_access do
         %p.access
           = f.label :readers, "Available to"
-          - Reader.find(:all).each do |reader|
-            %span.radiobutton
-              = radio_button_tag "download[reader_id]", reader.id, @download.has_reader?(reader)
-              = reader.name
+          = select :download, :reader_id, Reader.find(:all).collect{|r| [r.name, r.id]}
 
   = javascript_tag "$('download_name').activate()"
 

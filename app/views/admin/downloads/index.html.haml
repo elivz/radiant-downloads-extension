@@ -33,4 +33,8 @@
 
 %h2 See Downloads For:
 - @readers.each do |reader|
-  = link_to(reader.name, {:action => 'index', :reader => reader.id})
+  - if @reader == reader
+    %strong
+      = reader.name
+  - else
+    = link_to(reader.name, {:action => 'index', :reader => reader.id})

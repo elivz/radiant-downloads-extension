@@ -1,6 +1,6 @@
 - include_stylesheet 'admin/downloads'
 
-%h1 Authorized Downloads
+%h1 Downloads
 
 %table#downloads.index{:cellpadding => "0", :cellspacing => "0", :border => "0"}
   %thead
@@ -30,3 +30,7 @@
 
 %p
   = link_to(image('new-file', :alt => 'New download'), :action => 'new')
+
+%h2 See Downloads For:
+- @readers.each do |reader|
+  = link_to(reader.name, {:action => 'index', :reader => reader.id})

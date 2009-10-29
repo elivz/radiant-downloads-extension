@@ -1,0 +1,12 @@
+%tr{:class => "node level-1"}
+  %td.download
+    = folder.name
+  %td.file
+  %td.remove
+    = link_to( image('remove', :alt => 'Remove Folder'), :action => 'destroy', :id => folder, :confirm => "Are you sure you want to completely remove #{folder.name}?")    
+- if folder.children.empty? 
+  %tr
+    %td.note{:colspan => "3"} 
+      No sub-folders have been created yet.
+- else
+  - render :partial => 'folder', :collection => folder.children

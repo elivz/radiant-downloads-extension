@@ -1,18 +1,18 @@
 # Downloads
 
-This is a simple and fairly thin extension that makes it easy to protect file downloads using nginx's internal redirects. It works something like this:
+Fork of http://github.com/spanner/radiant-downloads-extension
+
+This is a simple and fairly thin extension that makes it easy to protect file downloads using Apache's mod_xsendfile internal redirects. It works something like this:
 
 * You upload a file using the admin interface and grant access to a couple of reader groups. The file is stored outside the /public folder and can't be reached with a web browser
 * A thin public-facing controller takes download requests and checks them against group membership
 * If you're not allowed, it redirects you to reader login or just tells you off
-* If you are allowed, it returns an attachment-download response pointing to a fictional address in /secure_download but with the `X-Accel-Redirect` header set to the real address of your file
-* Your nginx configuration intercepts the `X-Accel-Redirect` header, ignores the request address and returns the file
+* If you are allowed, it returns an attachment-download response pointing to a fictional address in /secure_download but with the `mod_xsendfile` header set to the real address of your file
+* Your Apache configuration intercepts the `mod_xsendfile` header, ignores the request address and returns the file
 * Your web browser reads the request address and gets the right file name
-* Your nginx configuration also makes sure that typing in the /secure_download address doesn't give file access
+* Your Apache configuration also makes sure that typing in the /secure_download address doesn't give file access
 
 In other words, there is no way to get at the uploaded file without going through the authenticating controller. The original inspiration is [in Alexei Kovyrin's blog](http://blog.kovyrin.net/2006/11/01/nginx-x-accel-redirect-php-rails/).
-
-It ought to be an easy matter to make this work with Apache and sendfile, but I haven't needed to.
 
 As with other group-access-control, a download with no groups attached is considered available, but here we are more restrictive and only make it available to logged in readers. If you want to publish a document for the public, you'd be better advised to upload it as a paperclipped asset.
 

@@ -10,6 +10,7 @@ class DownloadsExtension < Radiant::Extension
     map.resources :downloads, :only => :show
     map.namespace :admin, :path_prefix => 'admin/readers' do |admin|
       admin.resources :downloads
+      admin.resources :download_folders
     end
   end
   

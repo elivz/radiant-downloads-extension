@@ -9,7 +9,7 @@ class Download < ActiveRecord::Base
 
   has_attached_file :document,
                     :url => "/download_control/:id/:basename:no_original_style.:extension",
-                    :path => ":rails_root/secure_downloads/:id/:basename:no_original_style.:extension"
+                    :path => ":rails_root/secure_downloads/:id/:basename.:extension"
 
   validates_attachment_presence :document
   

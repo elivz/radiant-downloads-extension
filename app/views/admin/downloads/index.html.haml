@@ -11,26 +11,15 @@
         %th.actions
     %tbody
       - if @folders.empty?
-        - render :partial => 'folder', :collection => DownloadFolder.find_all_by_parent_id_and_reader_id(nil, @reader.id)
-
-      - if @downloads.empty?
         %tr
           %td.note{:colspan => "3"} 
-            No files have been uploaded yet.
+            No folders have been created yet.
       - else
-        - @downloads.each do |dl|
-          %tr{:class => "node level-2"}
-            %td.download
-              = link_to dl.name, edit_admin_download_url(dl)
-            %td.file
-              = link_to dl.document_file_name, download_url(dl)
-              = number_to_human_size(dl.document_file_size)
-            %td.remove
-              = link_to( image('remove', :alt => 'Remove Download'), :action => 'destroy', :id => dl, :confirm => "Are you sure you want to completely remove #{dl.name}?")
+        = render :partial => 'folder', :collection => @folders
   
   %p
-    = link_to(image('new-file', :alt => 'New download'), :action => 'new')
-    = link_to(image('new-folder', :alt => 'New folder'), :controller => 'download_folders', :action => 'new')
+    = link_to(image('new-file', :alt => 'New download'), :action => 'new', :reader_id => @reader.id)
+    = link_to(image('new-folder', :alt => 'New folder'), :controller => 'download_folders', :action => 'new', :reader_id => @reader.id)
 
 %h2 See Downloads For:
 - @readers.each do |reader|

@@ -1,12 +1,21 @@
-%tr{:class => "node level-1"}
-  %td.download
+%tr{:class => "node level-0"}
+  %td.page
     = folder.name
   %td.file
+    = link_to( image('add-child', :alt => 'Add Child'), :action => 'new', :download_folder_id => folder.id, :reader_id => @reader.id)
   %td.remove
     = link_to( image('remove', :alt => 'Remove Folder'), :action => 'destroy', :id => folder, :confirm => "Are you sure you want to completely remove #{folder.name}?")    
-- if folder.children.empty? 
-  %tr
+- if folder.downloads.empty? 
+  %tr{:class => "node level-2"}
     %td.note{:colspan => "3"} 
-      No sub-folders have been created yet.
+      No files have been uploaded yet.
 - else
-  - render :partial => 'folder', :collection => folder.children
+  - folder.downloads.each do |dl|
+    %tr{:class => "node level-1"}
+      %td.page{:style => 'padding-left: 26px'}
+        = link_to( image('page') + " <span class='title'>#{dl.name}</span>", edit_admin_download_url(dl))
+      %td.file
+        = link_to dl.document_file_name, download_url(dl)
+        = number_to_human_size(dl.document_file_size)
+      %td.remove
+        = link_to( image('remove', :alt => 'Remove Download'), :action => 'destroy', :id => dl, :confirm => "Are you sure you want to completely remove #{dl.name}?")

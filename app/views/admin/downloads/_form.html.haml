@@ -7,20 +7,40 @@
       %p.title
         = f.label :name
         = f.text_field 'name', :maxlength => 100, :class => "textbox"
-
+ 
+    - form.edit_description do
+      %p.description
+        = f.label :description, "Description or summary"
+        = f.text_area 'description', :size => '40x6', :style => 'width: 100%; height: 160px;', :class => "textarea"
+        
     - form.edit_document do
-      - form.edit_access do
-        %p.access
-          = f.label :readers, "Available to"
-          = select :download_folder, :reader_id, Reader.find(:all).collect{|r| [r.name, r.id]}
+      %p.document
+        = f.label :document, @download.document? ? "Replace document" : "Upload document"
+        = f.file_field :document
+        - if @download.document?
+          %small
+            Current file: 
+            = link_to @download.document_file_name, download_url(@download)
+            
+    - form.edit_access do
+      %p.access
+        = f.label :readers, "Available to"
+        = select :download, :reader_id, Reader.find(:all).collect{|r| [r.name, r.id]}
+            
+    - form.edit_folder do
+      %p.folder
+        = f.label :download_folder, "In folder"
+        = select :download, :download_folder_id, DownloadFolder.find(:all).collect{|r| [r.name, r.id]}
 
+  = javascript_tag "$('download_name').activate()"
+  
   - render_region :form_bottom do |form_bottom|
     - form_bottom.edit_timestamp do
       = updated_stamp @download  
     - form_bottom.edit_buttons do
       %p.buttons
-        = save_model_button @download_folder
-        = save_model_and_continue_editing_button @download_folder
+        = save_model_button @download
+        = save_model_and_continue_editing_button @download
         or
         = link_to "Cancel", admin_downloads_url
 

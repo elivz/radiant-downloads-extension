@@ -21,7 +21,7 @@ class DownloadsExtension < Radiant::Extension
   
   def activate
     Page.send :include, DownloadTags
-    UserActionObserver.instance.send :add_observer!, Download 
+    UserActionObserver.instance.send :add_observer!, Download
 
     unless defined? admin.download
       Radiant::AdminUI.send :include, DownloadUI

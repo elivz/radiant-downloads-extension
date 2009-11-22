@@ -11,7 +11,7 @@
     - form.edit_description do
       %p.description
         = f.label :description, "Description or summary"
-        = f.text_area 'description', :size => '40x6', :style => 'width: 100%; height: 160px;', :class => "textarea"
+        = f.text_area 'description', :size => '40x6', :style => 'width: 100%; height: 120px;', :class => "textarea"
         
     - form.edit_document do
       %p.document
@@ -23,14 +23,15 @@
             = link_to @download.document_file_name, download_url(@download)
             
     - form.edit_access do
-      %p.access
-        = f.label :readers, "Available to"
-        = select :download, :reader_id, Reader.find(:all).collect{|r| [r.name, r.id]}
+      %p.access 
+        This file will be available to
+        %strong= @download.reader.name
+        = hidden_field :download, :reader_id
             
     - form.edit_folder do
       %p.folder
-        = f.label :download_folder, "In folder"
-        = select :download, :download_folder_id, DownloadFolder.find(:all).collect{|r| [r.name, r.id]}
+        = f.label :download_folder, "Folder:"
+        = select :download, :download_folder_id, @folders.collect{|r| [r.name, r.id]}
 
   = javascript_tag "$('download_name').activate()"
   

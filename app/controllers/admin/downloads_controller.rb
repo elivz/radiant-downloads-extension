@@ -10,7 +10,12 @@ class Admin::DownloadsController < Admin::ResourceController
     end
   end
   
+  def edit
+    @folders = DownloadFolder.find_by_reader_id(params[:reader])
+  end
+  
   def new
+    @folders = DownloadFolder.find_all_by_reader_id(params[:reader_id])
     @download.reader_id = params[:reader_id]
     @download.download_folder_id = params[:download_folder_id]
   end

@@ -17,4 +17,8 @@ class Admin::DownloadFoldersController < Admin::ResourceController
     end
   end
   
+  def destroy
+    redirect_to :controller => 'admin/downloads', :action => 'index', :reader => @download_folder.reader_id
+  end
+  
 end

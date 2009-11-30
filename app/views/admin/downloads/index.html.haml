@@ -18,8 +18,8 @@
         = render :partial => 'folder', :collection => @folders
   
   %p
-    = link_to(image('new-file', :alt => 'New download'), :action => 'new', :reader_id => @reader.id)
     = link_to(image('new-folder', :alt => 'New folder'), :controller => 'download_folders', :action => 'new', :reader_id => @reader.id)
+    = link_to(image('new-file', :alt => 'New download'), :action => 'new', :reader_id => @reader.id)
 
 %h2 See Downloads For:
 - @readers.each do |reader|

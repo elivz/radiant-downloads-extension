@@ -1,12 +1,12 @@
 class Admin::DownloadsController < Admin::ResourceController
   
   def index
-    @readers = Reader.find(:all)
+    @readers = Reader.find(:all, :order => "LOWER(name)")
     
     if params[:reader]
       @reader = Reader.find_by_id(params[:reader])
       @downloads = Download.find_all_by_reader_id(params[:reader])
-      @folders = DownloadFolder.find_all_by_reader_id(params[:reader])
+      @folders = DownloadFolder.find_all_by_reader_id(params[:reader], :order => "LOWER(name)")
     end
   end
   
@@ -27,6 +27,10 @@ class Admin::DownloadsController < Admin::ResourceController
     else
       render :action => "new"
     end
+  end
+  
+  def destroy
+    redirect_to :controller => 'admin/downloads', :action => 'index', :reader => @download.reader_id
   end
     
 end

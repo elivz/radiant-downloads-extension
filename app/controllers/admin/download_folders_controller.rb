@@ -17,7 +17,21 @@ class Admin::DownloadFoldersController < Admin::ResourceController
     end
   end
   
+  def edit
+    @folders = DownloadFolder.find_all_by_reader_id(@download.reader_id)
+  end
+  
+  def update
+    @download_folder = DownloadFolder.find(params[:id])
+    if @download_folder.update_attributes(params[:download_folder])
+      redirect_to :controller => 'admin/downloads', :action => 'index', :reader => @download_folder.reader_id
+    else
+       render :action => 'edit'
+    end
+  end
+  
   def destroy
+    @download_folder = DownloadFolder.find(params[:id]).destroy
     redirect_to :controller => 'admin/downloads', :action => 'index', :reader => @download_folder.reader_id
   end
   

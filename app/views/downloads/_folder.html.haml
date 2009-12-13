@@ -1,0 +1,13 @@
+%li.folder
+  %h3= folder.name
+  %ul.files
+
+    - if folder.downloads.empty? 
+      %li.file.empty
+        No files have been uploaded to this folder yet.
+    
+    - else
+      - folder.downloads.each do |dl|
+        %li.file
+          %h4= link_to( "#{dl.name} (<em>#{number_to_human_size(dl.document_file_size)}</em>)", download_url(dl))
+          .description= dl.description

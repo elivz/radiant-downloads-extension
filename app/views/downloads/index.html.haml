@@ -1,0 +1,9 @@
+%h1= "Files for #{@reader.name}"
+
+#downloads
+  %ul.folders
+    - if @folders.empty?
+      %li.alert
+        No files have been uploaded yet.
+    - else
+      = render :partial => 'folder', :collection => @folders

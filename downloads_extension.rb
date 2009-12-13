@@ -7,7 +7,7 @@ class DownloadsExtension < Radiant::Extension
   url "http://elivz.com"
   
   define_routes do |map|
-    map.resources :downloads, :only => :show
+    map.resources :downloads
     map.namespace :admin, :path_prefix => 'admin/readers' do |admin|
       admin.resources :downloads
       admin.resources :download_folders

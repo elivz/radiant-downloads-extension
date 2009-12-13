@@ -1,8 +1,17 @@
 class DownloadsController < ReaderActionController
   
-  before_filter :require_reader, :only => [:show]
+  before_filter :require_reader
   
+  radiant_layout 'Downloads'
+
+  def index
+    @reader = current_reader
+    @folders = DownloadFolder.find_all_by_reader_id(@reader.id, :order => "LOWER(name)")
+  end
+    
   def show
+    @radiant_layout = { :layout => false }
+    
     @download = Download.find(params[:id])
     if @download.available_to?(current_reader)
       response.headers['X-Sendfile'] = @download.document.path

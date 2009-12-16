@@ -1,5 +1,6 @@
 %li.folder
-  %h3= folder.name
+  %h3
+    %a{:href => '#'}= folder.name
   %ul.files
 
     - if folder.downloads.empty? 
@@ -9,7 +10,9 @@
     - else
       - folder.downloads.each do |dl|
         %li.file
-          %h4= link_to( "#{dl.name} <em>(updated #{time_ago_in_words(dl.updated_at)} ago)</em>", download_url(dl))
+          %h4= link_to( "#{dl.name} <em>(updated #{time_ago_in_words(dl.updated_at)} ago)</em>", download_url(dl), {:title => 'Click to download file'} )
           .description
             %p= dl.description
-            %p.filesize= "File size: #{number_to_human_size(dl.document_file_size)}"
+            %p.filename
+              = link_to( dl.document_file_name, download_url(dl), {:title => 'Click to download file'} )
+              = "(<em>#{number_to_human_size(dl.document_file_size)}</em>)"

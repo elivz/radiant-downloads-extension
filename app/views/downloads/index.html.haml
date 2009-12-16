@@ -7,6 +7,9 @@
         No files have been uploaded yet.
     - else
       = render :partial => 'folder', :collection => @folders
+  %p#logout
+    = link_to( 'Log Out', reader_logout_url )
+    
 - else
   %p.alert
     You must be logged in to view files.

@@ -26,5 +26,7 @@
   - if @reader == reader
     %strong
       = reader.name
+      &nbsp;
   - else
     = link_to(reader.name, {:action => 'index', :reader => reader.id})
+    &nbsp;

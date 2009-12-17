@@ -7,10 +7,10 @@
         = f.label :name
         = f.text_field 'name', :maxlength => 100, :class => "textbox"
           
-      - form.edit_access do
-        %p.access
-          = f.label :readers, "Available to"
-          = select :download_folder, :reader_id, Reader.find(:all).collect{|r| [r.name, r.id]}, {:selected => @download_folder.reader_id}
+    - form.edit_access do
+      %p.access
+        = f.label :readers, "Available to"
+        = select :download_folder, :reader_id, Reader.find(:all).collect{|r| [r.name, r.id]}, {:selected => @download_folder.reader_id}
 
   - render_region :form_bottom do |form_bottom|
     - form_bottom.edit_timestamp do

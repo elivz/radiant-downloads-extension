@@ -26,6 +26,7 @@ class DownloadsExtension < Radiant::Extension
     unless defined? admin.download
       Radiant::AdminUI.send :include, DownloadUI
       admin.download = Radiant::AdminUI.load_default_download_regions
+      admin.download_folder = Radiant::AdminUI.load_default_download_folder_regions
     end
 
     admin.tabs['Clients'].add_link('downloads', '/admin/readers/downloads')

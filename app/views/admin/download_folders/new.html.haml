@@ -1,7 +1,2 @@
 - include_stylesheet('admin/downloads')
-- render_region :main do |main|
-  - main.edit_header do
-    %h1 New Download Folder
-  - main.edit_form do
-    - form_for :download_folder, :url => admin_download_folders_path, :html => { :multipart => true } do |f|
-      = render :partial => "form", :locals => { :f => f }
+%h1= Test

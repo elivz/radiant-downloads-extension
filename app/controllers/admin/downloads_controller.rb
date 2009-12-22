@@ -31,7 +31,7 @@ class Admin::DownloadsController < Admin::ResourceController
     if @download.update_attributes(params[:download])
       redirect_to :controller => 'admin/downloads', :action => 'index', :reader => @download.reader_id
     else
-       render :action => 'edit'
+      render :action => 'edit'
     end
   end
   

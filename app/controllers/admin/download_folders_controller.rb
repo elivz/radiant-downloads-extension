@@ -26,7 +26,7 @@ class Admin::DownloadFoldersController < Admin::ResourceController
     if @download_folder.update_attributes(params[:download_folder])
       redirect_to :controller => 'admin/downloads', :action => 'index', :reader => @download_folder.reader_id
     else
-       render :action => 'edit'
+      render :action => 'edit'
     end
   end
   

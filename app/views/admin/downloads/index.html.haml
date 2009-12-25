@@ -15,7 +15,7 @@
           %td.note{:colspan => "3"} 
             No folders have been created yet.
       - else
-        = render :partial => 'folder', :collection => @folders
+        = render :partial => 'folder', :collection => @folders, :locals => { :level => 0 }
   
   %p
     = link_to(image('new-folder', :alt => 'New folder'), :controller => 'download_folders', :action => 'new', :reader_id => @reader.id)

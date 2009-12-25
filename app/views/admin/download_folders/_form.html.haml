@@ -1,16 +1,13 @@
 .form-area
   = render_region :form_top
+  = f.hidden_field :parent_id
+  = f.hidden_field :reader_id
 
   - render_region :form do |form|
     - form.edit_title do
       %p.title
         = f.label :name
         = f.text_field 'name', :maxlength => 100, :class => "textbox"
-          
-    - form.edit_access do
-      %p.access
-        = f.label :readers, "Available to"
-        = select :download_folder, :reader_id, Reader.find(:all).collect{|r| [r.name, r.id]}, {:selected => @download_folder.reader_id}
 
   - render_region :form_bottom do |form_bottom|
     - form_bottom.edit_timestamp do
@@ -18,7 +15,6 @@
     - form_bottom.edit_buttons do
       %p.buttons
         = save_model_button @download_folder
-        = save_model_and_continue_editing_button @download_folder
         or
         = link_to "Cancel", admin_downloads_url
 

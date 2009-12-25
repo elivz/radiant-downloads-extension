@@ -6,6 +6,7 @@ class Admin::DownloadFoldersController < Admin::ResourceController
   
   def new
     @download_folder.reader_id = params[:reader_id]
+    @download_folder.parent_id = params[:parent_id]
   end
   
   def create

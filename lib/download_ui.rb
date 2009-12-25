@@ -36,7 +36,7 @@ module DownloadUI
         returning OpenStruct.new do |download_folder|
           download_folder.edit = Radiant::AdminUI::RegionSet.new do |edit|
             edit.main.concat %w{edit_header edit_form}
-            edit.form.concat %w{edit_title edit_access}
+            edit.form.concat %w{edit_title}
             edit.form_bottom.concat %w{edit_timestamp edit_buttons}
           end
           download_folder.index = Radiant::AdminUI::RegionSet.new do |index|

@@ -4,7 +4,7 @@ class Admin::DownloadsController < Admin::ResourceController
     @readers = Reader.find(:all, :order => "LOWER(name)")
     @reader = Reader.find_by_id(params[:reader])
     @downloads = Download.find_all_by_reader_id(params[:reader])
-    @folders = DownloadFolder.find_all_by_reader_id(params[:reader], :order => "LOWER(name)")
+    @folders = DownloadFolder.find_all_by_reader_id_and_parent_id(params[:reader], nil, :order => "LOWER(name)")
   end
   
   def new

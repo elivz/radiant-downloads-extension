@@ -27,11 +27,7 @@
         This file will be available to
         %strong= @download.reader.name
         = hidden_field :download, :reader_id
-            
-    - form.edit_folder do
-      %p.folder
-        = f.label :download_folder, "Folder:"
-        = select :download, :download_folder_id, @folders.collect{|r| [r.name, r.id]}
+        = hidden_field :download, :download_folder_id
 
   = javascript_tag "$('download_name').activate()"
   

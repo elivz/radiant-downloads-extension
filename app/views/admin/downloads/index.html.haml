@@ -16,17 +16,13 @@
             No folders have been created yet.
       - else
         = render :partial => 'folder', :collection => @folders, :locals => { :level => 0 }
-  
-  %p
-    = link_to(image('new-folder', :alt => 'New folder'), :controller => 'download_folders', :action => 'new', :reader_id => @reader.id)
-    = link_to(image('new-file', :alt => 'New download'), :action => 'new', :reader_id => @reader.id)
 
 %h2 See Downloads For:
-- @readers.each do |reader|
-  - if @reader == reader
-    %strong
-      = reader.name
-      &nbsp;
-  - else
-    = link_to(reader.name, {:action => 'index', :reader => reader.id})
-    &nbsp;
+%ul#readers
+  - @readers.each do |reader|
+    - if @reader == reader
+      %li.current
+        = link_to(reader.name, {:action => 'index', :reader => reader.id})
+    - else
+      %li
+        = link_to(reader.name, {:action => 'index', :reader => reader.id})

@@ -1,10 +1,35 @@
 /* submenu admin */
 
-#content table.index .node .download {
-  font-size:115%;
-  font-weight:bold;
-}
+#content table.index .node .download, #content table.index .node .folder {
+	font-size: 115%;
+	font-weight: bold;
+	padding: 10px 0;
+	}
 
-#content table.index .node .download a {
-  color: black;
-}
+#content table.index .node {
+	font-weight: bold;
+	}
+
+#readers {
+	list-style-type: none;
+	padding: 0 0 1em;
+	float: left;
+	}
+#readers li {
+	float: left;
+	margin: 0 8px 8px 0;
+	}
+#readers li a {
+	padding: 3px 5px;
+	}
+#readers li.current a, #readers li a:hover {
+	background: #d8d4bf;
+	color: #7d796c;
+	text-decoration: none;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	}
+#readers li.current a {
+	font-weight: bold;
+	}

@@ -1,9 +1,9 @@
-%tr{:class => "node level-#{level}"}
-  %td.page{:style => "padding-left: #{(level*20)}px"}
+%tr{:class => "node"}
+  %td.folder{:style => "padding-left: #{(level*20)}px"}
     = folder.name
   %td.file
-    = link_to image('add-child', :alt => 'Add Child'), new_admin_download_url( :download_folder_id => folder.id, :reader_id => @reader.id )
-    = link_to image('add-child', :alt => 'Add Folder'), new_admin_download_folder_url( :parent_id => folder.id, :reader_id => @reader.id )
+    = link_to image('add-subfolder', :alt => 'Add Subfolder'), new_admin_download_folder_url( :parent_id => folder.id, :reader_id => @reader.id )
+    = link_to image('add-file', :alt => 'Add File'), new_admin_download_url( :download_folder_id => folder.id, :reader_id => @reader.id )
   %td.remove
     = link_to image('remove', :alt => 'Remove Folder'), admin_download_folder_url(folder), :method => :delete, :confirm => "Are you sure you want to completely remove &ldquo;#{folder.name}&rdquo; and all of its files?"
 
@@ -12,7 +12,7 @@
 
 - unless folder.downloads.empty?
   - folder.downloads.each do |dl|
-    %tr{:class => "node level-1"}
+    %tr{:class => "node"}
       %td.page{:style => "padding-left: #{((level+1)*20)}px"}
         = link_to( image('page') + " <span class='title'>#{dl.name}</span>", edit_admin_download_url(dl))
       %td.file

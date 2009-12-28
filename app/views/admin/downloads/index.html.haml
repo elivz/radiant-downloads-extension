@@ -17,6 +17,9 @@
       - else
         = render :partial => 'folder', :collection => @folders, :locals => { :level => 0 }
 
+  %p
+    = link_to(image('new-folder', :alt => 'New folder'), :controller => 'download_folders', :action => 'new', :reader_id => @reader.id)
+
 %h2 See Downloads For:
 %ul#readers
   - @readers.each do |reader|

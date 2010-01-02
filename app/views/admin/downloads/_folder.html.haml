@@ -1,5 +1,5 @@
-%tr{:class => "node"}
-  %td.folder{:style => "padding-left: #{(level*20)}px"}
+%tr{:class => "node folder level-#{level}"}
+  %td.title{:style => "padding-left: #{(level*20)}px"}
     = folder.name
   %td.file
     = link_to image('add-subfolder', :alt => 'Add Subfolder'), new_admin_download_folder_url( :parent_id => folder.id, :reader_id => @reader.id )
@@ -14,8 +14,8 @@
 
 - unless folder.downloads.empty?
   - folder.downloads.each do |dl|
-    %tr{:class => "node"}
-      %td.page{:style => "padding-left: #{((level+1)*20)}px"}
+    %tr{:class => "node page level-#{level+1}"}
+      %td.title{:class => "level-#{level}", :style => "padding-left: #{((level+1)*20)}px"}
         = link_to( image('page') + " <span class='title'>#{dl.name}</span>", edit_admin_download_url(dl))
       %td.file
         = link_to dl.document_file_name, download_url(dl)

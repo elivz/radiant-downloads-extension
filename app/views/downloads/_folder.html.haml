@@ -6,16 +6,13 @@
     %ul.folders
       = render :partial => 'folder', :collection => folder.children.sort_by { |c| c.created_at }
       
-  %ul.files
-    - unless folder.downloads.empty?
+  - unless folder.downloads.empty?
+    %ul.files
       - folder.downloads.each do |dl|
         %li.file
-          %h4= link_to( "#{dl.name} <em>(updated #{time_ago_in_words(dl.updated_at)} ago)</em>", download_url(dl), {:title => 'Click to download file'} )
+          %h4= link_to( dl.name, download_url(dl), {:title => 'Click to download file'} )
           .description
             %p= dl.description
             %p.filename
               = link_to( dl.document_file_name, download_url(dl), {:title => 'Click to download file'} )
               = "(<em>#{number_to_human_size(dl.document_file_size)}</em>)"
-    - else
-      %li.file.empty
-        No files have been uploaded to this folder yet.

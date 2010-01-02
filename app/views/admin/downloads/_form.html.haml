@@ -24,8 +24,7 @@
             
     - form.edit_access do
       %p.access 
-        This file will be available to
-        %strong= @download.reader.name
+        = "This file will be available to <strong>#{@download.reader.name}</strong>."
         = hidden_field :download, :reader_id
         = hidden_field :download, :download_folder_id
 

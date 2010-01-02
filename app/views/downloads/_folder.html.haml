@@ -1,13 +1,13 @@
 %li.folder
   %h3
     %a{:href => '#'}= folder.name
-  %ul.files
 
-    - if folder.downloads.empty? 
-      %li.file.empty
-        No files have been uploaded to this folder yet.
-    
-    - else
+  - unless folder.children.empty?
+    %ul.folders
+      = render :partial => 'folder', :collection => folder.children
+      
+  %ul.files
+    - unless folder.downloads.empty?
       - folder.downloads.each do |dl|
         %li.file
           %h4= link_to( "#{dl.name} <em>(updated #{time_ago_in_words(dl.updated_at)} ago)</em>", download_url(dl), {:title => 'Click to download file'} )
@@ -16,3 +16,6 @@
             %p.filename
               = link_to( dl.document_file_name, download_url(dl), {:title => 'Click to download file'} )
               = "(<em>#{number_to_human_size(dl.document_file_size)}</em>)"
+    - else
+      %li.file.empty
+        No files have been uploaded to this folder yet.

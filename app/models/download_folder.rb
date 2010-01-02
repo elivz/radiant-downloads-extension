@@ -5,6 +5,6 @@ class DownloadFolder < ActiveRecord::Base
   
   acts_as_tree :order => "name"
   
-  default_scope :order => 'name ASC'
+  default_scope :order => 'created_at ASC'
   
 end

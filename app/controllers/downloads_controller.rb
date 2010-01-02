@@ -6,7 +6,7 @@ class DownloadsController < ReaderActionController
 
   def index
     @reader = current_reader
-    @folders = DownloadFolder.find_all_by_reader_id_and_parent_id(@reader.id, nil, :order => "LOWER(name)")
+    @folders = DownloadFolder.find_all_by_reader_id_and_parent_id(@reader.id, nil, :order => 'created_at ASC')
     @title = "Files for #{@reader.name}"
   end
     

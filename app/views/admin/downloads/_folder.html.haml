@@ -8,7 +8,7 @@
     = link_to image('remove', :alt => 'Remove Folder'), admin_download_folder_url(folder), :method => :delete, :confirm => "Are you sure you want to completely remove &ldquo;#{folder.name}&rdquo; and all of its files?"
 
 - unless folder.children.empty?
-  = render :partial => 'folder', :collection => folder.children, :locals => { :level => level + 1 }
+  = render :partial => 'folder', :collection => folder.children.sort_by { |c| c.created_at }, :locals => { :level => level + 1 }
 
 - unless folder.downloads.empty?
   - folder.downloads.each do |dl|

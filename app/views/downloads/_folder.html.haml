@@ -4,7 +4,7 @@
 
   - unless folder.children.empty?
     %ul.folders
-      = render :partial => 'folder', :collection => folder.children.sort_by { |c| c.created_at }
+      = render :partial => 'folder', :collection => folder.children.sort_by { |c| c.position }
       
   - unless folder.downloads.empty?
     %ul.files

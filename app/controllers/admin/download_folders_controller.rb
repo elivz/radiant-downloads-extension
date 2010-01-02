@@ -36,4 +36,16 @@ class Admin::DownloadFoldersController < Admin::ResourceController
     redirect_to :controller => 'admin/downloads', :action => 'index', :reader => @download_folder.reader_id
   end
   
+  def move_higher
+    @download_folder = DownloadFolder.find(params[:id])
+    @download_folder.move_higher
+    redirect_to :controller => 'admin/downloads', :action => 'index', :reader => @download_folder.reader_id
+  end
+  
+  def move_lower
+    @download_folder = DownloadFolder.find(params[:id])
+    @download_folder.move_lower
+    redirect_to :controller => 'admin/downloads', :action => 'index', :reader => @download_folder.reader_id
+  end
+  
 end

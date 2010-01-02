@@ -11,6 +11,8 @@ class DownloadsExtension < Radiant::Extension
     map.namespace :admin, :path_prefix => 'admin/readers' do |admin|
       admin.resources :downloads
       admin.resources :download_folders
+      admin.download_folder_move_higher "download_folders/:id/move_higher", :controller => :download_folders, :action => "move_higher"
+      admin.download_folder_move_lower "download_folders/:id/move_lower", :controller => :download_folders, :action => "move_lower"
     end
   end
   

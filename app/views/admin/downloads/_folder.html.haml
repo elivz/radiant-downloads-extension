@@ -22,7 +22,6 @@
         = link_to dl.document_file_name, download_url(dl)
         = number_to_human_size(dl.document_file_size)
       %td.comments
-        = dl.comments.count
-        = pluralize(dl.comments.count, 'comment')
+        = link_to "#{dl.comments.count} #{pluralize(dl.comments.count, 'comment')}", admin_comments_url(:download_id => dl.id)
       %td.remove
         = link_to image('remove', :alt => 'Remove Download'), admin_download_url(dl), :method => :delete, :confirm => "Are you sure you want to completely remove &ldquo;#{dl.name}&rdquo;?"

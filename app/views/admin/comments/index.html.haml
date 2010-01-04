@@ -1,0 +1,18 @@
+- include_stylesheet 'admin/downloads'
+- include_javascript 'admin/downloads'
+
+%h1= "Comments on \"#{@download.name}\""
+
+%ul#comments
+  - if @comments.empty?
+    %p There are no comments on this entry
+  - else
+    - @comments.each do |comment|
+      %li
+        %p.date
+          = comment.reader.name
+          on
+          = comment.created_at.localtime.strftime("%B %e, %Y at %l:%M%p")
+        = simple_format(comment.comment)
+
+%p= link_to 'Return to download listing', admin_downloads_url(:reader => @download.reader_id)

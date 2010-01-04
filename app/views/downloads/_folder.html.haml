@@ -12,9 +12,14 @@
         %li.file
           %h4
             = link_to( dl.name, download_url(dl), {:title => 'Click to download file'} )
-            %span= link_to( 'Add Comment', new_comment_url(:download_id => dl.id) )
+            = link_to( 'Add a Comment', new_comment_url(:download_id => dl.id), :class => 'comment' )
           .description
             %p= dl.description
             %p.filename
               = link_to( dl.document_file_name, download_url(dl), {:title => 'Click to download file'} )
               = "(<em>#{number_to_human_size(dl.document_file_size)}</em>)"
+            - unless dl.comments.empty?
+              .comments
+                %h5 Comments:
+                - dl.comments.each do |comment|
+                  .comment= simple_format(comment.comment)

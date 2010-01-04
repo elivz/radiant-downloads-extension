@@ -1,10 +1,18 @@
 /* submenu admin */
 
-#content table.index .node .download, #content table.index .node .folder {
-	font-size: 115%;
+#content table.index .node .title {
+	font-size: 16px;
 	font-weight: bold;
 	padding: 10px 0;
+	color: #000;
 	}
+#content table.index .page .title {
+  font-size: 14px;
+  }
+#content table.index .node .title a {
+  color: #000;
+  text-decoration: none;
+  }
 
 #content table.index .node {
 	font-weight: bold;
@@ -33,3 +41,19 @@
 #readers li.current a {
 	font-weight: bold;
 	}
+
+#comments {
+  padding: 0;
+  list-style-type: none;
+  border-top: 1px solid #aaa;
+  }
+#comments li {
+  padding: 1em 0;
+  margin: 0;
+  border-bottom: 1px solid #aaa;
+  }
+
+#comments li .date {
+  font-size: 0.85em;
+  color: #666;
+  }

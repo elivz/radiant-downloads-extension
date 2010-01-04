@@ -1,5 +1,5 @@
 %div#new_comment
-  %h3 New Comment
+  %h3= "Comment on #{@comment.download.name}"
   - form_for :comment, @comment, :url => comments_url do |f|
 
     = f.hidden_field :reader_id

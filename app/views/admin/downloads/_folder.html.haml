@@ -4,6 +4,7 @@
   %td.file
     = link_to image('add-subfolder', :alt => 'Add Subfolder'), new_admin_download_folder_url( :parent_id => folder.id, :reader_id => @reader.id )
     = link_to image('add-file', :alt => 'Add File'), new_admin_download_url( :download_folder_id => folder.id, :reader_id => @reader.id )
+  %td
   %td.remove
     = link_to image('move-up', :alt => 'Move up'), admin_download_folder_move_higher_url(folder.id)
     = link_to image('move-down', :alt => 'Move down'), admin_download_folder_move_lower_url(folder.id)
@@ -20,5 +21,8 @@
       %td.file
         = link_to dl.document_file_name, download_url(dl)
         = number_to_human_size(dl.document_file_size)
+      %td.comments
+        = dl.comments.count
+        = pluralize(dl.comments.count, 'comment')
       %td.remove
         = link_to image('remove', :alt => 'Remove Download'), admin_download_url(dl), :method => :delete, :confirm => "Are you sure you want to completely remove &ldquo;#{dl.name}&rdquo;?"

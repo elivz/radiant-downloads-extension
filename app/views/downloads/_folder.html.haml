@@ -10,7 +10,9 @@
     %ul.files
       - folder.downloads.each do |dl|
         %li.file
-          %h4= link_to( dl.name, download_url(dl), {:title => 'Click to download file'} )
+          %h4
+            = link_to( dl.name, download_url(dl), {:title => 'Click to download file'} )
+            %span= link_to( 'Add Comment', new_comment_url(:download_id => dl.id) )
           .description
             %p= dl.description
             %p.filename

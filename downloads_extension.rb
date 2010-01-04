@@ -8,6 +8,7 @@ class DownloadsExtension < Radiant::Extension
   
   define_routes do |map|
     map.resources :downloads
+    map.resources :comments, :only => [:new, :create]
     map.namespace :admin, :path_prefix => 'admin/readers' do |admin|
       admin.resources :downloads
       admin.resources :download_folders

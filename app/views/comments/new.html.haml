@@ -1,0 +1,14 @@
+%div#new_comment
+  %h3 New Comment
+  - form_for :comment, @comment, :url => comments_url do |f|
+
+    = f.hidden_field :reader_id
+    = f.hidden_field :download_id
+
+    .comment
+      = f.text_area 'comment', :size => '40x6', :style => 'width: 100%; height: 120px;', :class => "textarea"
+    
+    .buttons
+      = save_model_button @comment
+      or
+      = link_to "Cancel", downloads_url, :class => 'cancel_link'

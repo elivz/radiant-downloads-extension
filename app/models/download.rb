@@ -5,6 +5,8 @@ class Download < ActiveRecord::Base
   belongs_to :reader
   belongs_to :download_folder
   
+  has_many :comments
+  
   default_scope :order => 'updated_at DESC, created_at DESC'
 
   has_attached_file :document,

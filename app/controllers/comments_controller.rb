@@ -15,8 +15,10 @@ class CommentsController < ReaderActionController
   def create
     @comment = Comment.new(params[:comment])
     if @comment.save
+      flash[:notice] = 'Comment saved'
       redirect_to downloads_url
     else
+      flash[:warning] = 'Comment could not be saved'
       render :action => "new", :download_id => @comment.download_id
     end
   end

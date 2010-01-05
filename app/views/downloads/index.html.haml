@@ -1,5 +1,10 @@
 %h2= "Files for #{@reader.name}"
 
+- f_names = [:notice, :warning, :message]
+- for name in f_names
+  - if flash[name]
+    .flash-message= flash[name]
+
 - unless @reader.nil?
   %ul#downloads.folders
     - if @folders.empty?
